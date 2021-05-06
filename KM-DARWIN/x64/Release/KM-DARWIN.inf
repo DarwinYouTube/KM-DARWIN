@@ -1,0 +1,90 @@
+;
+; KM-DARWIN.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Sample ; TODO: edit Class
+ClassGuid={78A1C341-4539-11d3-B88D-00C04FAD5171} ; TODO: edit ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=KM-DARWIN.cat
+DriverVer = 05/06/2021,13.57.2.293
+PnpLockDown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+KM-DARWIN_Device_CoInstaller_CopyFiles = 11
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=SampleClassReg
+
+[SampleClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+KM-DARWIN.sys  = 1,,
+;
+
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTamd64
+
+[Standard.NTamd64]
+%KM-DARWIN.DeviceDesc%=KM-DARWIN_Device, Root\KM-DARWIN ; TODO: edit hw-id
+
+[KM-DARWIN_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+KM-DARWIN.sys
+
+;-------------- Service installation
+[KM-DARWIN_Device.NT.Services]
+AddService = KM-DARWIN,%SPSVCINST_ASSOCSERVICE%, KM-DARWIN_Service_Inst
+
+; -------------- KM-DARWIN driver install sections
+[KM-DARWIN_Service_Inst]
+DisplayName    = %KM-DARWIN.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\KM-DARWIN.sys
+
+;
+;--- KM-DARWIN_Device Coinstaller installation ------
+;
+
+[KM-DARWIN_Device.NT.CoInstallers]
+AddReg=KM-DARWIN_Device_CoInstaller_AddReg
+CopyFiles=KM-DARWIN_Device_CoInstaller_CopyFiles
+
+[KM-DARWIN_Device_CoInstaller_AddReg]
+;
+
+
+[KM-DARWIN_Device_CoInstaller_CopyFiles]
+;
+
+
+[KM-DARWIN_Device.NT.Wdf]
+KmdfService =  KM-DARWIN, KM-DARWIN_wdfsect
+[KM-DARWIN_wdfsect]
+KmdfLibraryVersion = 1.15
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+ClassName="Samples" ; TODO: edit ClassName
+DiskName = "KM-DARWIN Installation Disk"
+KM-DARWIN.DeviceDesc = "KM-DARWIN Device"
+KM-DARWIN.SVCDESC = "KM-DARWIN Service"

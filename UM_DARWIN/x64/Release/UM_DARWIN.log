@@ -1,0 +1,15 @@
+﻿  main.cpp
+C:\Users\Darwin\source\repos\KM-DARWIN\UM_DARWIN\main.h(77,23): warning C4244: =: преобразование "SIZE_T" в "ULONG", возможна потеря данных
+C:\Users\Darwin\source\repos\KM-DARWIN\UM_DARWIN\main.h(56,22): warning C4244: =: преобразование "SIZE_T" в "ULONG", возможна потеря данных
+C:\Users\Darwin\source\repos\KM-DARWIN\UM_DARWIN\main.cpp(15): message : выполняется компиляция ссылки на экземпляр шаблон функции "type DarwinTap::ReadVirtualMemory<DWORD>(ULONG,ULONG,SIZE_T)"
+          with
+          [
+              type=DWORD
+          ]
+C:\Users\Darwin\source\repos\KM-DARWIN\UM_DARWIN\main.h(51,9): warning C4101: Return: неиспользованная локальная переменная
+C:\Users\Darwin\source\repos\KM-DARWIN\UM_DARWIN\main.h(51,17): warning C4101: Bytes: неиспользованная локальная переменная
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+  All 19 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  UM_DARWIN.vcxproj -> C:\Users\Darwin\source\repos\KM-DARWIN\x64\Release\UM_DARWIN.exe

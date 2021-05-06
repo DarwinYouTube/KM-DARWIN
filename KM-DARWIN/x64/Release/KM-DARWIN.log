@@ -1,0 +1,11 @@
+﻿  Building 'KM-DARWIN' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Release\KM-DARWIN.inf
+  Stamping [Version] section with DriverVer=05/06/2021,13.57.2.293
+  event.c
+  main.c
+  Создание кода...
+  KM-DARWIN.vcxproj -> C:\Users\Darwin\source\repos\KM-DARWIN\x64\Release\KM-DARWIN.sys
+  Done Adding Additional Store
+  Successfully signed: C:\Users\Darwin\source\repos\KM-DARWIN\x64\Release\KM-DARWIN.sys
+  
+  Driver is 'Universal'.
