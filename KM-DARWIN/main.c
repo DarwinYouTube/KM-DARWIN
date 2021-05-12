@@ -3,6 +3,9 @@
 #include "struct.h"
 #include "address.h"
 
+PDEVICE_OBJECT pDeviceObject;
+UNICODE_STRING dev, dos;
+
 // Точка входа
 NTSTATUS DriverEntry(PDRIVER_OBJECT pDriverObject, PUNICODE_STRING pUnicodeString) {
 
@@ -32,7 +35,6 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriverObject, PUNICODE_STRING pUnicodeStrin
 
 // Точка выхода
 NTSTATUS DriverUnload(PDRIVER_OBJECT pDriverObject) {
-
 	DbgPrintEx(0, 0, "[+] Driver Unloaded\n");
 
 	PsRemoveLoadImageNotifyRoutine(ImageCallback);

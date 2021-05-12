@@ -174,3 +174,4 @@ VOID HideDriver(PDRIVER_OBJECT pDriverObject)
 	// once everything is done we lower the IRQL level back to normal
 	KeLowerIrql(irql);
 }
+

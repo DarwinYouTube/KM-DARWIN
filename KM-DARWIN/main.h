@@ -3,9 +3,6 @@
 NTSTATUS DriverEntry(PDRIVER_OBJECT pDriverObject, PUNICODE_STRING pUnicodeString);
 NTSTATUS DriverUnload(PDRIVER_OBJECT pDriverObject);
 
-PDEVICE_OBJECT pDeviceObject; // our driver object
-UNICODE_STRING dev, dos; // Driver registry paths
-
 // Request to read virtual user memory (memory of a program) from kernel space
 #define IO_READ_REQUEST CTL_CODE(FILE_DEVICE_UNKNOWN, 0x0701 /* Our Custom Code */, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
 

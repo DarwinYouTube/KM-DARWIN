@@ -1,10 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClInclude Include="main.h">
+      <Filter>Cheat</Filter>
+    </ClInclude>
+    <ClInclude Include="offsets.h">
+      <Filter>Cheat</Filter>
+    </ClInclude>
+    <ClInclude Include="shellcode.h">
+      <Filter>Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="driverutils.h">
+      <Filter>Driver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h" />
-    <ClInclude Include="offsets.h" />
+    <Filter Include="Cheat">
+      <UniqueIdentifier>{a28d8a9f-207d-441b-9991-8b79935c3319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Driver">
+      <UniqueIdentifier>{b61c1033-8a69-4b8e-b2eb-66f67c50378a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Cheat</Filter>
+    </ClCompile>
+    <ClCompile Include="driver.cpp">
+      <Filter>Driver</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

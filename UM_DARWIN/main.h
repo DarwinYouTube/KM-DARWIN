@@ -2,14 +2,14 @@
 
 #include <Windows.h>
 #include <iostream>
+#include <conio.h>
+#include <tlhelp32.h>
 using namespace std;
 
 #define IO_READ_REQUEST CTL_CODE(FILE_DEVICE_UNKNOWN, 0x0701 /* Our Custom Code */, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
 #define IO_WRITE_REQUEST CTL_CODE(FILE_DEVICE_UNKNOWN, 0x0702 /* Our Custom Code */, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
 #define IO_GET_ID_REQUEST CTL_CODE(FILE_DEVICE_UNKNOWN, 0x0703 /* Our Custom Code */, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
 #define IO_GET_MODULE_REQUEST CTL_CODE(FILE_DEVICE_UNKNOWN, 0x0704 /* Our Custom Code */, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
-
-DWORD ProcessId, ClientModule;
 
 typedef struct _KERNEL_READ_REQUEST
 {
@@ -34,12 +34,14 @@ typedef struct _KERNEL_WRITE_REQUEST
 class DarwinTap {
 public:
 
-	HANDLE hDriver;
+	DarwinTap();
+	~DarwinTap();
 
-	DarwinTap(LPCSTR RegistryPath) {
-		hDriver = CreateFileA(RegistryPath, GENERIC_READ | GENERIC_WRITE, 
-			FILE_SHARE_READ | FILE_SHARE_WRITE, 0, OPEN_EXISTING, 0, 0);
-	}
+	static   DarwinTap& singleton();
+	inline bool is_loaded()  const { return hDriver != INVALID_HANDLE_VALUE; }
+
+	void     handle_driver();
+	void     handle_close();
 
 	template <typename type>
 	type ReadVirtualMemory(ULONG ProcessId, ULONG ReadAddress,
@@ -112,4 +114,17 @@ public:
 		else
 			return false;
 	}
+
+
+
+private:
+	HANDLE hDriver = INVALID_HANDLE_VALUE;
+	DarwinTap(const DarwinTap&) = delete;
+	DarwinTap& operator = (const DarwinTap&) = delete;
+
 };
+
+inline DarwinTap& Driver()
+{
+	return DarwinTap::singleton();
+}
